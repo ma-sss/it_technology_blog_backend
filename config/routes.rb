@@ -5,6 +5,14 @@ Rails.application.routes.draw do
         registrations: 'api/v1/admin/registrations',
         sessions: 'api/v1/admin/sessions'
       }
+      namespace :admin do
+        resources :posts, path: '/:admin_id/posts'
+        resources :comments, path: '/:admin_id/comments'
+      end
+      namespace :user do
+        resources :comments, only: [:create]
+        resources :comments, only: [:show, :destroy], path: '/:admin_id/comments'
+      end
     end
   end
 end
