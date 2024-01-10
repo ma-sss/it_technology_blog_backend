@@ -1,6 +1,15 @@
 class Api::V1::Admin::PostsController < ApplicationController
     before_action :authenticate_api_v1_admin!, only: [:create, :destroy]
 
+    def index
+        posts = Post.all
+        if posts
+            render json: { status: 'SUCCESS', data: posts }
+        else
+            render json: { status: 'ERROR', data: posts.errors }
+        end
+    end
+
     def create
         post = Post.new(create_params)
         if post.save
