@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         sessions: 'api/v1/admin/sessions'
       }
       namespace :admin do
-        resources :posts, only: [:index]
+        resources :posts, only: [:index, :show]
         resources :posts, path: '/:admin_id/posts', except: [:index]
         resources :comments, path: '/:admin_id/comments'
       end

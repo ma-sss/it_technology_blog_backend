@@ -10,6 +10,15 @@ class Api::V1::Admin::PostsController < ApplicationController
         end
     end
 
+    def show
+        post = Post.find(params[:id])
+        if post
+            render json: { status: 'SUCCESS', data: post }
+        else
+            render json: { status: 'ERROR', data: post.error }
+        end
+    end
+
     def create
         post = Post.new(create_params)
         if post.save
