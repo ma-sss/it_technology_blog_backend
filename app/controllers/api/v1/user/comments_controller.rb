@@ -1,8 +1,16 @@
 class Api::V1::User::CommentsController < ApplicationController
+    def index
+        comments = Comment.where(post_id:params[:post_id])
+        if comments
+            render json: { status: 'SUCCESS', data: comments }
+        else
+            render json: { status: 'ERROR', data: comments.errors }
+        end
+    end
+
     def create
         user = User.new(create_user_params)
         comment = Comment.new(create_params)
-        comment.user_id = user.id
         if user.save
             comment.user_id = user.id
             if comment.save
@@ -26,7 +34,7 @@ class Api::V1::User::CommentsController < ApplicationController
 
     private
     def create_params
-        params.permit(:text)
+        params.permit(:text, :post_id)
     end
 
     def create_user_params

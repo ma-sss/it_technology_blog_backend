@@ -2,7 +2,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
         # origins 'example.com'の部分をorigins '*'に変更
         # '*' ですべてのHTTPリクエストを許可する
-        origins '*'
+        origins "localhost:3001"
 
         resource "*",
         headers: :any,

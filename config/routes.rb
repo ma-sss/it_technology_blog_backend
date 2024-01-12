@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       end
       namespace :user do
         resources :comments, only: [:create]
-        resources :comments, only: [:show, :destroy], path: '/:admin_id/comments'
+        resources :comments, only: [:index], path: '/:post_id/comments'
+        resources :comments, only: [:show, :destroy], path: '/:user_id/comments'
       end
     end
   end

@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
     t.integer "post_id"
     t.integer "admin_id"
     t.integer "user_id"
-    t.string "text"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "admin_id"
     t.string "title"
-    t.string "content"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -40,6 +40,6 @@ class Api::V1::Admin::PostsController < ApplicationController
 
     private
     def create_params
-        params.permit(:title, :content)
+        params.permit(:admin_id, :title, :content)
     end
 end

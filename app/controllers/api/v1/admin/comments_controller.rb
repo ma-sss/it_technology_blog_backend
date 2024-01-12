@@ -22,6 +22,6 @@ class Api::V1::Admin::CommentsController < ApplicationController
 
     private
     def create_params
-        params.permit(:text)
+        params.permit(:post_id, :text, :admin_id)
     end
 end
