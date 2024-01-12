@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
     t.integer "post_id"
     t.integer "admin_id"
     t.integer "user_id"
+    t.string "user_name"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

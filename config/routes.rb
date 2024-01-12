@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         registrations: 'api/v1/admin/registrations',
         sessions: 'api/v1/admin/sessions'
       }
+      resources :users, only: [:show]
       namespace :admin do
         resources :posts, only: [:index, :show]
         resources :posts, path: '/:admin_id/posts', except: [:index]

@@ -10,9 +10,10 @@ class Api::V1::User::CommentsController < ApplicationController
 
     def create
         user = User.new(create_user_params)
-        comment = Comment.new(create_params)
+        comment = Comment.new(create_comment_params)
         if user.save
             comment.user_id = user.id
+            comment.user_name = user.name
             if comment.save
                 render json:  { user: { status: 'SUCCESS', data: user }, comment: { status: 'SUCCESS', data: comment } }
             else
@@ -33,7 +34,7 @@ class Api::V1::User::CommentsController < ApplicationController
     end
 
     private
-    def create_params
+    def create_comment_params
         params.permit(:text, :post_id)
     end
 
