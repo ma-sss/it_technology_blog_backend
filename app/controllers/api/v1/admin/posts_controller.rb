@@ -28,6 +28,15 @@ class Api::V1::Admin::PostsController < ApplicationController
         end
     end
 
+    def update
+        post = Post.find_by(id: params[:id])
+        if post.update(update_params)
+            render json: { status: 'SUCCESS', data: post }
+        else
+            render json: { status: 'Error',  errors: post.errors }
+        end
+    end
+
     def destroy
         post = Post.find_by(id: params[:id])
         if post.destroy
@@ -41,5 +50,9 @@ class Api::V1::Admin::PostsController < ApplicationController
     private
     def create_params
         params.permit(:admin_id, :title, :content)
+    end
+
+    def update_params
+        params.permit(:title, :content)
     end
 end

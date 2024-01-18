@@ -5,16 +5,20 @@ Rails.application.routes.draw do
         registrations: 'api/v1/admin/registrations',
         sessions: 'api/v1/admin/sessions'
       }
-      resources :users, only: [:show]
+      resources :users, only: [:index]
       namespace :admin do
-        resources :posts, only: [:index, :show]
-        resources :posts, path: '/:admin_id/posts', except: [:index]
-        resources :comments, path: '/:admin_id/comments'
+        resources :posts, only: [:index, :show, :update, :destroy]
+        resources :posts, only: [:create], path: "/:admin_id/post"
+        resources :comments, only: [:show, :update, :destroy]
+        resources :comments, only: [:create], path: "/:admin_id/comment"
+        resources :replies, only: [:show, :create, :update, :destroy]
+        resources :replies, only: [:create], path: "/:admin_id/comment/:comment_id/reply"
+
       end
       namespace :user do
-        resources :comments, only: [:create]
-        resources :comments, only: [:index], path: '/:post_id/comments'
-        resources :comments, only: [:show, :destroy], path: '/:user_id/comments'
+        resources :comments, only: [:show, :create, :index, :update, :destroy]
+        resources :replies, only: [:index, :show, :update, :destroy]
+        resources :replies, only: [:create], path: "/comment/:comment_id/reply"
       end
     end
   end

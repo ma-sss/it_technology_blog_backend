@@ -1,12 +1,31 @@
 class Api::V1::Admin::CommentsController < ApplicationController
     before_action :authenticate_api_v1_admin!, only: [:create, :destroy]
 
+    def show
+        comment = Comment.find(params[:id])
+        if comment
+            render json: { status: 'SUCCESS', data: comment }
+        else
+            render json: { status: 'ERROR', data: comment.errors }
+        end
+    end
+
     def create
         comment = Comment.new(create_params)
+        comment.admin_id = params[:admin_id]
         if comment.save
             render json: { status: 'SUCCESS', data: comment }
         else
             render json: { status: 'ERROR', data: comment.errors }
+        end
+    end
+
+    def update
+        comment = Comment.find_by(id: params[:id])
+        if comment.update(update_params)
+            render json: { status: 'SUCCESS', data: comment }
+        else
+            render json: { status: 'Error',  errors: comment.errors }
         end
     end
 
@@ -17,11 +36,14 @@ class Api::V1::Admin::CommentsController < ApplicationController
         else
             render json: { status: 'Error', message: 'Failed to delete comment', errors: comment.errors.full_messages }
         end
-
     end
 
     private
     def create_params
-        params.permit(:post_id, :text, :admin_id)
+        params.permit(:text, :post_id)
+    end
+
+    def update_params
+        params.permit(:text)
     end
 end

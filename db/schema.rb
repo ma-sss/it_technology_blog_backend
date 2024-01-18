@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_13_032943) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
     t.integer "post_id"
     t.integer "admin_id"
     t.integer "user_id"
-    t.string "user_name"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,6 +37,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_074856) do
     t.integer "admin_id"
     t.string "title"
     t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "replies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "comment_id"
+    t.integer "user_id"
+    t.integer "admin_id"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
