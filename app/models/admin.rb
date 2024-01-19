@@ -6,8 +6,6 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  validates :name, presence: true,
-                   length: { minimum: 1, maximum: 20 } # 名前の文字数範囲を設定
   validates :email, presence: true, # メールアドレスが空でないことを確認
                     uniqueness: true,
                     length: { maximum: 320 }, # メールアドレスの最大文字数を設定
