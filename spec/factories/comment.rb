@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :comment do
         post_id { '1' }
-        text { 'いいね！' }
+        text { '投稿いいね！' }
     end
 end

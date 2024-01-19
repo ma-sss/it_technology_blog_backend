@@ -32,7 +32,7 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
       # t.string :name
       # t.string :nickname
       # t.string :image
-      t.string :email
+      t.string :email, null: false, :default => ""
 
       ## Tokens
       t.text :tokens
