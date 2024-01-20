@@ -1,7 +1,9 @@
 class Api::V1::Admin::RepliesController < ApplicationController
+    before_action :authenticate_api_v1_admin!, only: [:create, :update, :destroy]
+
     def show
         reply = Reply.find(params[:id])
-        if reply 
+        if reply.present?
             render json: { status: 'SUCCESS', data: reply }
         else
             render json: { status: 'Error',  errors: reply.errors }
@@ -39,10 +41,10 @@ class Api::V1::Admin::RepliesController < ApplicationController
 
     private
     def reply_create_params
-        params.permit(:text)
+        params.require(:reply).permit(:text)
     end
 
     def update_params
-        params.permit(:text)
+        params.require(:reply).permit(:text)
     end
 end

@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.3"
 
+gem 'pry-rails'
+
 gem 'dotenv-rails'
 
 gem 'devise'
@@ -74,6 +76,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rails-controller-testing'
   gem "capybara"
   gem "selenium-webdriver"
   gem 'rspec-rails'

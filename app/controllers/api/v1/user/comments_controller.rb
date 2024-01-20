@@ -1,7 +1,9 @@
 class Api::V1::User::CommentsController < ApplicationController
+    before_action :authenticate_api_v1_admin!, only: [:update, :destroy]
+
     def index
         comments = Comment.all
-        if comments
+        if comments.present?
             render json: { status: 'SUCCESS', data: comments }
         else
             render json: { status: 'ERROR', data: comments.errors }
@@ -10,7 +12,7 @@ class Api::V1::User::CommentsController < ApplicationController
 
     def show
         comment = Comment.find(params[:id])
-        if comment
+        if comment.present?
             render json: { status: 'SUCCESS', data: comment }
         else
             render json: { status: 'ERROR', data: comment.errors }
@@ -20,6 +22,7 @@ class Api::V1::User::CommentsController < ApplicationController
     def create
         user = User.new(create_user_params)
         comment = Comment.new(create_comment_params)
+
         if user.save
             comment.user_id = user.id
             if comment.save
@@ -52,14 +55,14 @@ class Api::V1::User::CommentsController < ApplicationController
 
     private
     def create_comment_params
-        params.permit(:text, :post_id)
+        params.require(:comment).permit(:text, :post_id)
     end
 
     def create_user_params
-        params.permit(:name)
+        params.require(:user).permit(:name)
     end
 
     def update_params
-        params.permit(:text)
+        params.require(:comment).permit(:text)
     end
 end

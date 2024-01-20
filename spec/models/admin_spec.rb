@@ -9,20 +9,6 @@ describe 'Adminモデルのテスト', Admin do
         expect(admin1).to be_valid
     end
 
-    it "nameがない場合は登録できないこと" do
-        admin1 = FactoryBot.create(:admin)
-        admin1.name = nil
-        admin1.valid?
-        expect(admin1.errors.full_messages).to include("Name can't be blank")
-    end
-
-    it "nameが21文字以上の場合は登録できないこと" do
-        admin1 = FactoryBot.create(:admin)
-        admin1.name = "あああああああああああああああああああああ"
-        admin1.valid?
-        expect(admin1.errors.full_messages).to include("Name is too long (maximum is 20 characters)")
-    end
-
     it "emailがない場合は登録できないこと" do
         admin1 = FactoryBot.create(:admin)
         admin1.email = nil

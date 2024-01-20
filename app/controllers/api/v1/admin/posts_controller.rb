@@ -1,18 +1,18 @@
 class Api::V1::Admin::PostsController < ApplicationController
-    before_action :authenticate_api_v1_admin!, only: [:create, :destroy]
+    before_action :authenticate_api_v1_admin!, only: [:create, :update, :destroy]
 
     def index
         posts = Post.all
-        if posts
+        if posts.present?
             render json: { status: 'SUCCESS', data: posts }
         else
-            render json: { status: 'ERROR', data: posts.errors }
+            render json: { status: 'ERROR', data: ['No posts found'] }
         end
     end
 
     def show
         post = Post.find(params[:id])
-        if post
+        if post.present?
             render json: { status: 'SUCCESS', data: post }
         else
             render json: { status: 'ERROR', data: post.error }
@@ -21,6 +21,8 @@ class Api::V1::Admin::PostsController < ApplicationController
 
     def create
         post = Post.new(create_params)
+        post.admin_id = params[:admin_id]
+
         if post.save
             render json: { status: 'SUCCESS', data: post }
         else
@@ -44,15 +46,14 @@ class Api::V1::Admin::PostsController < ApplicationController
         else
             render json: { status: 'Error', message: 'Failed to delete post', errors: post.errors.full_messages }
         end
-
     end
 
     private
     def create_params
-        params.permit(:admin_id, :title, :content)
+        params.require(:post).permit(:title, :content)
     end
 
     def update_params
-        params.permit(:title, :content)
+        params.require(:post).permit(:title, :content)
     end
 end

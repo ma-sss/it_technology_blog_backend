@@ -1,7 +1,9 @@
 class Api::V1::User::RepliesController < ApplicationController
+    before_action :authenticate_api_v1_admin!, only: [:update, :destroy]
+
     def index
         replies = Reply.all
-        if replies
+        if replies.present?
             render json: { status: 'SUCCESS',  data: replies }
         else
             render json: { status: 'Error',  errors: replies.errors }
@@ -10,7 +12,7 @@ class Api::V1::User::RepliesController < ApplicationController
 
     def show
         reply = Reply.find(params[:id])
-        if reply 
+        if reply.present?
             render json: { status: 'SUCCESS',  data: reply }
         else
             render json: { status: 'Error',  errors: reply.errors }
@@ -53,14 +55,14 @@ class Api::V1::User::RepliesController < ApplicationController
 
     private
     def reply_create_params
-        params.permit(:text)
+        params.require(:reply).permit(:text)
     end
 
     def user_create_params
-        params.permit(:name)
+        params.require(:user).permit(:name)
     end
 
     def update_params
-        params.permit(:text)
+        params.require(:reply).permit(:text)
     end
 end

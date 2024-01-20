@@ -1,9 +1,9 @@
 class Api::V1::Admin::CommentsController < ApplicationController
-    before_action :authenticate_api_v1_admin!, only: [:create, :destroy]
+    before_action :authenticate_api_v1_admin!, only: [:create, :update, :destroy]
 
     def show
         comment = Comment.find(params[:id])
-        if comment
+        if comment..present?
             render json: { status: 'SUCCESS', data: comment }
         else
             render json: { status: 'ERROR', data: comment.errors }
@@ -40,10 +40,10 @@ class Api::V1::Admin::CommentsController < ApplicationController
 
     private
     def create_params
-        params.permit(:text, :post_id)
+        params.require(:comment).permit(:text, :post_id)
     end
 
     def update_params
-        params.permit(:text)
+        params.require(:comment).permit(:text)
     end
 end
