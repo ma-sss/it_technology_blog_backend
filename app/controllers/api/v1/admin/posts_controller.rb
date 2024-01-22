@@ -26,7 +26,12 @@ class Api::V1::Admin::PostsController < ApplicationController
         if post.save
             render json: { status: 'SUCCESS', data: post }
         else
-            render json: { status: 'ERROR', data: post.errors }
+            errors = {}
+            errors[:status] = 'ERROR'
+            errors[:error] = []
+
+            errors[:error].concat(post.errors.full_messages)
+            render json: errors
         end
     end
 
@@ -35,7 +40,7 @@ class Api::V1::Admin::PostsController < ApplicationController
         if post.update(update_params)
             render json: { status: 'SUCCESS', data: post }
         else
-            render json: { status: 'Error',  errors: post.errors }
+            render json: { status: 'ERROR',  errors: post.errors.full }
         end
     end
 
@@ -44,7 +49,7 @@ class Api::V1::Admin::PostsController < ApplicationController
         if post.destroy
             render json: { status: 'SUCCESS', message: 'Deleted the post' }
         else
-            render json: { status: 'Error', message: 'Failed to delete post', errors: post.errors.full_messages }
+            render json: { status: 'ERROR', message: 'Failed to delete post', errors: post.errors.full_messages }
         end
     end
 

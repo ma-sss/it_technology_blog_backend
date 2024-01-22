@@ -6,7 +6,7 @@ class Api::V1::Admin::CommentsController < ApplicationController
         if comment..present?
             render json: { status: 'SUCCESS', data: comment }
         else
-            render json: { status: 'ERROR', data: comment.errors }
+            render json: { status: 'ERROR', data: comment.errors.full_messages }
         end
     end
 
@@ -16,7 +16,7 @@ class Api::V1::Admin::CommentsController < ApplicationController
         if comment.save
             render json: { status: 'SUCCESS', data: comment }
         else
-            render json: { status: 'ERROR', data: comment.errors }
+            render json: { status: 'ERROR', data: comment.errors.full_messages }
         end
     end
 
@@ -25,7 +25,7 @@ class Api::V1::Admin::CommentsController < ApplicationController
         if comment.update(update_params)
             render json: { status: 'SUCCESS', data: comment }
         else
-            render json: { status: 'Error',  errors: comment.errors }
+            render json: { status: 'ERROR',  errors: comment.errors.full_messages }
         end
     end
 
@@ -34,7 +34,7 @@ class Api::V1::Admin::CommentsController < ApplicationController
         if comment.destroy
             render json: { status: 'SUCCESS', message: 'Deleted the comment' }
         else
-            render json: { status: 'Error', message: 'Failed to delete comment', errors: comment.errors.full_messages }
+            render json: { status: 'ERROR', message: 'Failed to delete comment', errors: comment.errors.full_messages }
         end
     end
 

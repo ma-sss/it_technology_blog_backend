@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
         if users.present?
             render json: { status: 'SUCCESS', data: users }
         else
-            render json: { status: 'ERROR', data: users.errors }
+            render json: { status: 'ERROR', data: users.errors.full_messages }
         end
     end
 end

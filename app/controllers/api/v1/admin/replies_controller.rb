@@ -6,7 +6,7 @@ class Api::V1::Admin::RepliesController < ApplicationController
         if reply.present?
             render json: { status: 'SUCCESS', data: reply }
         else
-            render json: { status: 'Error',  errors: reply.errors }
+            render json: { status: 'ERROR',  errors: reply.errors.full_messages }
         end
     end
 
@@ -17,7 +17,7 @@ class Api::V1::Admin::RepliesController < ApplicationController
         if reply.save
             render json: { status: 'SUCCESS', data: reply } 
         else
-            render json: { status: 'Error',  errors: reply.errors }
+            render json: { status: 'ERROR',  errors: reply.errors.full_messages }
         end
     end
 
@@ -26,7 +26,7 @@ class Api::V1::Admin::RepliesController < ApplicationController
         if reply.update(update_params)
             render json: { status: 'SUCCESS', data: reply }
         else
-            render json: { status: 'Error',  errors: reply.errors }
+            render json: { status: 'ERROR',  errors: reply.errors.full_messages }
         end
     end
 
@@ -35,7 +35,7 @@ class Api::V1::Admin::RepliesController < ApplicationController
         if reply.destroy
             render json: { status: 'SUCCESS', message: 'Deleted the reply' }
         else
-            render json: { status: 'Error', message: 'Failed to delete reply', errors: reply.errors.full_messages }
+            render json: { status: 'ERROR', message: 'Failed to delete reply', errors: reply.errors.full_messages }
         end
     end
 

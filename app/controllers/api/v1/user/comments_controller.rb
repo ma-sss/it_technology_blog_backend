@@ -6,7 +6,7 @@ class Api::V1::User::CommentsController < ApplicationController
         if comments.present?
             render json: { status: 'SUCCESS', data: comments }
         else
-            render json: { status: 'ERROR', data: comments.errors }
+            render json: { status: 'ERROR', data: comments.errors.full_messages }
         end
     end
 
@@ -15,32 +15,42 @@ class Api::V1::User::CommentsController < ApplicationController
         if comment.present?
             render json: { status: 'SUCCESS', data: comment }
         else
-            render json: { status: 'ERROR', data: comment.errors }
+            render json: { status: 'ERROR', data: comment.errors.full_messages }
         end
     end
 
     def create
         user = User.new(create_user_params)
         comment = Comment.new(create_comment_params)
-
-        if user.save
-            comment.user_id = user.id
-            if comment.save
-                render json:  { user: { status: 'SUCCESS', data: user }, comment: { status: 'SUCCESS', data: comment } }
+      
+        ActiveRecord::Base.transaction do
+            user_saved = user.save
+            comment.user_id = user.id if user_saved
+            comment_saved = comment.save
+        
+            if user_saved && comment_saved
+                render json: { user: { status: 'SUCCESS', data: user }, comment: { status: 'SUCCESS', data: comment } }
             else
-                render json: { status: 'ERROR', data: comment.errors }
+                errors = {}
+                errors[:status] = 'ERROR'
+                errors[:error] = []
+
+                errors[:error].concat(user.errors.full_messages) unless user_saved
+                errors[:error].concat(comment.errors.full_messages) unless comment_saved
+
+                render json: errors
+                raise ActiveRecord::Rollback
             end
-        else
-            render json: { status: 'ERROR', data: user.errors }
         end
     end
+      
 
     def update
         comment = Comment.find_by(id: params[:id])
         if comment.update(update_params)
             render json: { status: 'SUCCESS', data: comment }
         else
-            render json: { status: 'Error',  errors: comment.errors }
+            render json: { status: 'ERROR',  errors: comment.errors.full_messages }
         end
     end
 
@@ -49,7 +59,7 @@ class Api::V1::User::CommentsController < ApplicationController
         if comment.destroy
             render json: { status: 'SUCCESS', message: 'Deleted the comment' }
         else
-            render json: { status: 'Error', message: 'Failed to delete comment', errors: comment.errors.full_messages }
+            render json: { status: 'ERROR', message: 'Failed to delete comment', errors: comment.errors.full_messages }
         end
     end
 

@@ -6,7 +6,7 @@ class Api::V1::User::RepliesController < ApplicationController
         if replies.present?
             render json: { status: 'SUCCESS',  data: replies }
         else
-            render json: { status: 'Error',  errors: replies.errors }
+            render json: { status: 'ERROR',  errors: replies.errors.full_messages }
         end
     end
 
@@ -15,7 +15,7 @@ class Api::V1::User::RepliesController < ApplicationController
         if reply.present?
             render json: { status: 'SUCCESS',  data: reply }
         else
-            render json: { status: 'Error',  errors: reply.errors }
+            render json: { status: 'ERROR',  errors: reply.errors.full_messages }
         end
     end
 
@@ -23,15 +23,25 @@ class Api::V1::User::RepliesController < ApplicationController
         reply = Reply.new(reply_create_params)
         reply.comment_id = params[:comment_id]
         user = User.new(user_create_params)
-        if user.save
-            reply.user_id = user.id
-            if reply.save
-                render json:  { user: { status: 'SUCCESS', data: user }, reply: { status: 'SUCCESS', data: reply } }
+
+        ActiveRecord::Base.transaction do
+            user_saved = user.save
+            reply.user_id = user.id if user_saved
+            reply_saved = reply.save
+        
+            if user_saved && reply_saved
+                render json: { user: { status: 'SUCCESS', data: user }, reply: { status: 'SUCCESS', data: reply } }
             else
-                render json: { status: 'Error',  errors: reply.errors }
+                errors = {}
+                errors[:status] = 'ERROR'
+                errors[:error] = []
+
+                errors[:error].concat(user.errors.full_messages) unless user_saved
+                errors[:error].concat(reply.errors.full_messages) unless reply_saved
+
+                render json: errors
+                raise ActiveRecord::Rollback
             end
-        else
-            render json: { status: 'Error',  errors: user.errors }
         end
     end
 
@@ -40,7 +50,7 @@ class Api::V1::User::RepliesController < ApplicationController
         if reply.update(update_params)
             render json: { status: 'SUCCESS', data: reply }
         else
-            render json: { status: 'Error',  errors: reply.errors }
+            render json: { status: 'ERROR',  errors: reply.errors.full_messages }
         end
     end
 
@@ -49,7 +59,7 @@ class Api::V1::User::RepliesController < ApplicationController
         if reply.destroy
             render json: { status: 'SUCCESS', message: 'Deleted the reply' }
         else
-            render json: { status: 'Error', message: 'Failed to delete reply', errors: reply.errors.full_messages }
+            render json: { status: 'ERROR', message: 'Failed to delete reply', errors: reply.errors.full_messages }
         end
     end
 
