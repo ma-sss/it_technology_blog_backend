@@ -11,7 +11,7 @@ count = 0
   admin = Admin.create!(email: "admin#{i}@example.com", password: "Password123", password_confirmation: "Password123")
 
     3.times do |j|
-        post = Post.create!(admin_id: admin.id, title: "仮の投稿タイトル#{j}", content: "仮の投稿内容#{j}")
+        post = Post.create!(admin_id: admin.id, category: "tentative", title: "仮の投稿タイトル#{j}", content: "仮の投稿内容#{j}")
 
         2.times do |k|
             Comment.create!(post_id: post.id, admin_id: admin.id, user_id: nil, text: "投稿内容いいね！")

@@ -55,7 +55,7 @@ class Api::V1::Admin::PostsController < ApplicationController
 
     private
     def create_params
-        params.require(:post).permit(:title, :content)
+        params.require(:post).permit(:title, :content, :category)
     end
 
     def update_params

@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_032943) do
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "admin_id", null: false
+    t.string "category", default: "other", null: false
     t.string "title", default: "", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false

@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+    enum category: { frontend: 'frontend', backend: 'backend', other: 'other', tentative: 'tentative' }
+    validates :category, presence: true
     validates :admin_id, presence: true
     validates :title, presence: true,
                      uniqueness: true,

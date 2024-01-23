@@ -13,7 +13,7 @@ describe 'Adminモデルのテスト', Admin do
         admin1 = FactoryBot.create(:admin)
         admin1.email = nil
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email can't be blank")
+        expect(admin1.errors.full_messages).to include("Emailを入力してください")
     end
 
     it "emailが重複していたら登録できないこと" do
@@ -21,54 +21,54 @@ describe 'Adminモデルのテスト', Admin do
         admin2 = FactoryBot.create(:admin)
         admin1.email = admin2.email
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email has already been taken")
+        expect(admin1.errors.full_messages).to include("Emailはすでに存在します")
     end
 
     it 'メールアドレスが "@" を含まない場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "example.com"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
     end
 
     it 'メールアドレスがドメイン部分を含まない場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user@"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
     end
 
     it 'メールアドレスが "." でドメインを区切らない場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user@examplecom"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email is not an email")
+        expect(admin1.errors.full_messages).to include("Emailは有効ではありません")
     end
 
     it 'メールアドレスがスペースを含む場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user@example.com with space"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
     end
 
     it 'メールアドレスが無効な文字を含む場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user#example.com"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
 
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user@example,com"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
     end
 
     it 'メールアドレスが連続するドットを含む場合は無効であること' do
         admin1 = FactoryBot.create(:admin)
         admin1.email = "user@example..com"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Email が正しい形式ではありません")
+        expect(admin1.errors.full_messages).to include("Emailが正しい形式ではありません")
     end
 
     it "passwordとpassword_confimationが一致しない場合は登録できないこと" do
@@ -76,7 +76,7 @@ describe 'Adminモデルのテスト', Admin do
         admin1.password = "password"
         admin1.password_confirmation = "password123"
         admin1.valid?
-        expect(admin1.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(admin1.errors.full_messages).to include("Password confirmationとPasswordの入力が一致しません")
     end
 
     it "passwordとpassword_confimationがない場合は登録できないこと" do
