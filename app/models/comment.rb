@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
-    belongs_to :admin
-    belongs_to :user, dependent: :destroy
+    belongs_to :admin, optional: true
+    belongs_to :user, dependent: :destroy, optional: true
     belongs_to :post
     has_many :reply, dependent: :destroy
     validates :post_id, presence: true
