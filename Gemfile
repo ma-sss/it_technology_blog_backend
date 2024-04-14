@@ -3,6 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.3"
 
+gem 'rails-i18n'
+
+gem 'pry-rails'
+
+gem 'dotenv-rails'
+
+gem 'devise'
+
+gem 'devise_token_auth'
+
+gem 'rack-cors'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 
@@ -70,7 +82,11 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rails-controller-testing'
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 
 end
