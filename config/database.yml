@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: it_technology_blog_backend_production
-  username: it_technology_blog_backend
-  password: <%= ENV["IT_TECHNOLOGY_BLOG_BACKEND_DATABASE_PASSWORD"] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
