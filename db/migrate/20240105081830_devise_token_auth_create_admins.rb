@@ -41,7 +41,7 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
     end
 
     add_index :admins, :email, unique: true, length: 191
-    add_index :admins, [:uid, :provider],     unique: true
+    add_index :admins, [:uid, :provider], unique: true, length: { uid: 191, provider: 191 }
     # add_index :admins, :reset_password_token, unique: true
     # add_index :admins, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,         unique: true
