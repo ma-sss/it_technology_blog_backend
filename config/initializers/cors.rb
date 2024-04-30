@@ -13,5 +13,6 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         # どのHTTPリクエストメソッドを許可するか指定
         methods: [:get, :post, :put, :patch, :delete, :options, :head],
         credentials: true
+        referrer_policy: { policy: 'strict-origin-when-cross-origin' } # リファラーポリシーを追加
     end
 end
