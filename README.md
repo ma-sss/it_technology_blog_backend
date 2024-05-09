@@ -13,7 +13,10 @@ TOP画面
 次に気になるコメントをクリックするとコメントに対しての返信を見ることができ、そのコメントに対しての返信を投稿することができます。
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/d4eea4fb-caba-4549-ae72-6837d2687660)
   
-ここまでが一般ユーザーができることです。次は管理者のみができることを説明します。  
+ここまでが一般ユーザーができることです。  
+
+  
+次は管理者のみができることを説明します。  
 まずTOP画面にて、signinをしていきます。
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/d90fa184-2824-48b1-af9b-ded341967afc)
   
