@@ -3,7 +3,7 @@ TOP画面
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/35105354-6c5d-4981-b2f8-bc11f36909fa)
   
 ○仮の投稿編をクリック
-（実際はbackend編やfrontend編、AWS編があります）
+（実際はbackend編やfrontend編、AWS編があります）  
 （💬の横の数字は投稿に対してのコメント数を表示しています）
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/bf804773-f255-45b6-9b61-762f02abc8ab)
   
