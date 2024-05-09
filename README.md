@@ -1,24 +1,27 @@
-# README
+一般ユーザーの場合
+TOP画面
+○仮の投稿編をクリック
+（実際はbackend編やfrontend編、AWS編があります）
+（💬の横の数字は投稿に対してのコメント数を表示しています）
+![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/35105354-6c5d-4981-b2f8-bc11f36909fa)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+次に見たい仮の投稿タイトルをクリックすると投稿内容とその投稿に対してのコメントが閲覧でき、さらにブログの投稿に対してコメントの投稿ができる。（💬の横の数字はコメントに対しての返信数を表示しています）
 
-Things you may want to cover:
+次に気になるコメントをクリックするとコメントに対しての返信を見ることができ、そのコメントに対しての返信を投稿することができます。
 
-* Ruby version
 
-* System dependencies
+ここまでが一般ユーザーができることです。次は管理者のみができることを説明します。
+まずTOP画面にて、signinをしていきます。
+Signinをクリックして
+ログインしていくと
+headerに投稿ページが表示されるのでこれをクリックして
+ここで投稿内容を入力することができる。
 
-* Configuration
+あとは投稿の編集やコメント編集、返信編集をすることができます。
 
-* Database creation
+投稿編集画面
+コメント編集画面
+返信編集画面
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+以上が機能紹介になります。
