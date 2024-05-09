@@ -18,7 +18,7 @@ TOP画面
   
 次は管理者のみができることを説明します。  
 まずTOP画面にて、signinをしていきます。
-![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/d90fa184-2824-48b1-af9b-ded341967afc)
+![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/35105354-6c5d-4981-b2f8-bc11f36909fa)
   
 Signinをクリックして
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/ce093f56-d35f-4cc5-b7ad-da0ea2f073a3)
