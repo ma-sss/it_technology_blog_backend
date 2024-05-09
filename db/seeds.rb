@@ -7,9 +7,13 @@
 #   Character.create(name: "Luke", movie: movies.first)
 # count = 0
 
+admin_pass = ENV['ADMIN_PASS']
+admin_email = ENV['ADMIN_EMAIL']
+
+
 #1.times do |i|
   #admin = Admin.create!(email: "admin#{i}@example.com", password: "<%= ENV['ADMIN_PASS'] %>", password_confirmation: "<%= ENV['ADMIN_PASS'] %>")
-  Admin.create!(email: "admin123@example.com", password: "<%= ENV['ADMIN_PASS'] %>", password_confirmation: "<%= ENV['ADMIN_PASS'] %>")
+  Admin.create!(email: admin_email, password: admin_pass, password_confirmation: admin_pass)
 
     #3.times do |j|
     #    post = Post.create!(admin_id: admin.id, category: "tentative", title: "仮の投稿タイトル#{j}", content: "仮の投稿内容#{j}")
