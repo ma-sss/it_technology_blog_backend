@@ -1,5 +1,7 @@
-Frontend : react
-Backend : rails
+使用言語　　
+　　
+Frontend : react　　
+Backend : rails　　
 Database :  mysql  を使用しています。　　
 
 機能説明　　
