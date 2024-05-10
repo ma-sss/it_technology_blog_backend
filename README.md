@@ -4,7 +4,7 @@ Frontend : react　　
 Backend : rails　　
 Database :  mysql  を使用しています。　　
 
-<img width="264" alt="image" src="https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/6967bd87-54d5-4b06-b511-984ceed50d49">
+<img width="264" alt="image" src="https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/6967bd87-54d5-4b06-b511-984ceed50d49">　　
 
 機能説明　　
 
