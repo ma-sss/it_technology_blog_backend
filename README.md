@@ -1,3 +1,9 @@
+Frontend : react
+Backend : rails
+Database :  mysql  を使用しています。　　
+
+機能説明　　
+
 一般ユーザーの場合  
 TOP画面  
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/35105354-6c5d-4981-b2f8-bc11f36909fa)
