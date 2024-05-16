@@ -1,27 +1,46 @@
-使用言語　　
-　　
-Frontend : react　　
-Backend : rails　　
-Database :  mysql  を使用しています。　　
+◎*目次*  
+　・ウェブアプリの概要  
+　・使用技術  
+　・データベース設計図  
+　・機能説明
+
+◎*ウェブアプリの概要*  
+　このブログではウェブアプリ自体の作り方や技術を初心者の方でも理解しやすいように、わかりやすく解説しています。  
+基本構造としてはバックエンドをRailsで、フロントエンドをReactで構成し、REST APIで接続したウェブアプリになります。  
+基本的な機能としては管理者のみがログインして記事の投稿をして、一般ユーザーはログインなしで投稿の閲覧やコメントと返信の投稿が可能です。
+
+◎*使用技術*  
+　フロントエンド  
+ 　　・言語: JavaScript, TypeScript  
+ 　　・フレームワーク: React  
+ 　　・クラウド: AWS S3  
+　バックエンド  
+ 　　・言語: Ruby  
+ 　　・フレームワーク: Rails(セキュリティ面に配慮し、管理者ユーザー認証にdevise_token_authを使用しています)
+ 　　・テスト: Rspec  （単体テスト:model、　機能テスト:request）
+ 　　・クラウド: AWS EC2  
+ 　データベース  
+ 　　・MySQL  
+　
 
 <img width="264" alt="image" src="https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/6967bd87-54d5-4b06-b511-984ceed50d49">　　
 
-機能説明　　
+◎*機能説明*（一般ユーザーと管理者のみができることを分けて説明しています）  
 
 一般ユーザーの場合  
-TOP画面  
+TOP画面  URL:[http://it-technology-blog-frontend.s3-website-ap-northeast-1.amazonaws.com/build/]
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/35105354-6c5d-4981-b2f8-bc11f36909fa)
   
-○上のTOP画面に表示されている仮の投稿編をクリック
-（実際はbackend編やfrontend編、AWS編があります）  
-（💬の横の数字は投稿に対してのコメント数を表示しています）
+○上のTOP画面に表示されている『◯仮の投稿編(3件)』をクリック  
+（実際はbackend編やfrontend編、説明編、その他編があります）    
+（下に表示されている💬の横の数字は投稿に対してのコメント数を表示しています）  
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/bf804773-f255-45b6-9b61-762f02abc8ab)
   
-次に上の画面で見たい投稿（例:仮の投稿タイトル0）をクリックすると投稿内容とその投稿に対してのコメントが閲覧でき、さらにブログの投稿に対してコメントの投稿ができる。（💬の横の数字はコメントに対しての返信数を表示しています）
+次に上の画面で見たい投稿（例:仮の投稿タイトル0）をクリックすると投稿内容とその投稿に対してのコメントが閲覧でき、さらにブログの投稿に対してコメントの投稿ができる。（下に表示されている💬の横の数字はコメントに対しての返信数を表示しています）
 ![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/59d1b72b-a4fd-4397-a371-cfa11ba3423c)
   
-次に気になるコメントをクリックするとコメントに対しての返信を見ることができ、そのコメントに対しての返信を投稿することができます。
-![image](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/d4eea4fb-caba-4549-ae72-6837d2687660)
+次に気になるコメント（例:一番上の管理者のコメント）をクリックするとコメントに対しての返信を見ることができ、そのコメントに対しての返信を投稿することができます。
+![スクリーンショット 2024-05-10 21 10 52](https://github.com/ma-sss/it_technology_blog_backend/assets/120617383/cb071923-7b05-47c5-991b-b0c82f8136de)
   
 ここまでが一般ユーザーができることです。  
 
