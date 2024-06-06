@@ -17,8 +17,8 @@
  　　・クラウド: AWS S3  
 　バックエンド  
  　　・言語: Ruby  
- 　　・フレームワーク: Rails(セキュリティ面に配慮し、管理者ユーザー認証にdevise_token_authを使用しています)
- 　　・テスト: Rspec  （単体テスト:model、　機能テスト:request）
+ 　　・フレームワーク: Rails(セキュリティ面に配慮し、管理者ユーザー認証にdevise_token_authを使用しています)  
+ 　　・テスト: Rspec  （単体テスト:model、　機能テスト:request）  
  　　・クラウド: AWS EC2  
  　データベース  
  　　・MySQL  
